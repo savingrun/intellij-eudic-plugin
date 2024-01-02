@@ -1,18 +1,32 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin require-restart="false">
     <id>com.github.savingrun.intellijeudicplugin</id>
+    <version>0.0.1</version>
     <name>Eudic</name>
-    <vendor>savingrun</vendor>
+    <vendor email="savingrun@gmail.com" url="https://runsaving.com">savingrun</vendor>
+    <!-- 插件网页和开发工具中的插件描述内容, 只能用简单HTML标记(文本格式, 段落和列表), 不支持CSS和JS, 不支持iframe.
+        必须要有简短的英文描述, 之后可以放中文, 否则会审核不通过.
+        完整内容: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Enter short description for your theme here.<br>
+    <em>most HTML tags may be used</em>
+]]></description>
+
+    <!-- 更改备注, 建议每个版本更新, 支持中英文 -->
+    <change-notes><![CDATA[
+    Initial release of the theme.
+  ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
-
     <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.savingrun.intellijeudicplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow anchor="right"
+                    icon="AllIcons.General.Note"
+                    factoryClass="com.github.savingrun.intellijeudicplugin.toolWindow.MyToolWindowFactory"
+                    id="Word Book"/>
     </extensions>
-
     <applicationListeners>
-        <listener class="com.github.savingrun.intellijeudicplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.savingrun.intellijeudicplugin.listeners.MyApplicationActivationListener"
+                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
 </idea-plugin>
