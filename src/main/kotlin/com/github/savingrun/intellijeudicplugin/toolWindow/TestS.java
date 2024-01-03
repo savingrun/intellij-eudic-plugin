@@ -1,5 +1,10 @@
 package com.github.savingrun.intellijeudicplugin.toolWindow;
 
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.ui.components.JBLabel;
+
 import javax.swing.*;
 
 /**
@@ -9,7 +14,11 @@ import javax.swing.*;
  * @author <a href="https://github.com/savingrun">Saving</a>
  * @version 1.0
  **/
-public class TestS {
+public class TestS extends SimpleToolWindowPanel {
+
+    private final Project project;
+    private final ToolWindow toolWindow;
+
     private JPanel rootPanel;
     private JTable tableS;
     private JToolBar toolBarS;
@@ -23,7 +32,15 @@ public class TestS {
         this.rootPanel = rootPanel;
     }
 
-    public TestS() {
+    public TestS(Project project, ToolWindow toolWindow) {
+        super(false, false);
+        this.project = project;
+        this.toolWindow = toolWindow;
+        initUI();
+    }
+
+    private void initUI() {
+        rootPanel.add(new JBLabel("initUI"));
     }
 
     public JTable getTableS() {
@@ -53,4 +70,5 @@ public class TestS {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
 }

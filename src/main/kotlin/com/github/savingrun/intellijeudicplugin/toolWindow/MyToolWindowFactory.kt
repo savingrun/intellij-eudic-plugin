@@ -27,11 +27,7 @@ class MyToolWindowFactory : ToolWindowFactory {
     }
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-//        val myToolWindow = MyToolWindow(toolWindow)
-        val testS = TestS()
-        testS.title = JBLabel("This a Test Label 66")
-        val content = ContentFactory.getInstance().createContent(testS.rootPanel, null, false)
-        toolWindow.contentManager.addContent(content)
+        WordBookWindow(project, toolWindow)
     }
 
     override fun shouldBeAvailable(project: Project) = true
