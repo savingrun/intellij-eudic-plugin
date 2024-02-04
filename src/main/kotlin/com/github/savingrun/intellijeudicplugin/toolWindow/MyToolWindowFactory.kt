@@ -39,7 +39,6 @@ class MyToolWindowFactory : ToolWindowFactory {
 
         private val service = toolWindow.project.service<MyProjectService>()
 
-
         fun getContent() = JBPanel<JBPanel<*>>().apply {
             val label = JBLabel(MyBundle.message("randomLabel", "?"))
             thisLogger().info("saving")

@@ -3,3 +3,4 @@ plugins {
 }
 
 rootProject.name = "intellij-eudic-plugin"
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
