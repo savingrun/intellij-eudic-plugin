@@ -1,20 +1,22 @@
 package com.github.savingrun.intellijeudicplugin.toolWindow
 
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.MasterDetailsComponent.MyNode
 import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.openapi.wm.ToolWindow
-import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
-import com.intellij.ui.components.JBRadioButton
-import com.intellij.ui.components.JBTreeTable
+import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.components.JBViewport
 import com.intellij.ui.content.ContentFactory
-import com.intellij.ui.treeStructure.treetable.TreeTableModel
+import com.intellij.ui.table.JBTable
+import com.intellij.ui.table.TableView
 import com.intellij.util.ui.ColumnInfo
+import com.intellij.util.ui.ListTableModel
+import com.intellij.util.xml.DomElement
+import com.intellij.util.xml.ui.StringColumnInfo
 import java.awt.BorderLayout
-import javax.swing.JTree
-import javax.swing.event.TreeModelListener
-import javax.swing.tree.TreePath
+import javax.swing.JTable
+import javax.swing.table.DefaultTableModel
+import javax.swing.table.TableModel
 
 
 /**
@@ -38,12 +40,27 @@ class WordBookWindow(project: Project, toolWindow: ToolWindow) : SimpleToolWindo
     private fun basis() {
         val jbPanel = JBPanel<JBPanel<*>>()
         jbPanel.layout = BorderLayout()
-        jbPanel.add(JBLabel("WordBookWindow Test 666"))
-        setContent(jbPanel)
         jbPanel.isVisible = true
-        val tableJbPanel = JBPanel<JBPanel<*>>()
-        tableJbPanel.add(JBRadioButton("Sync"))
-        jbPanel.add(tableJbPanel)
+        setContent(jbPanel)
+        val vocabularyList = listOf(
+            Vocabulary("Apple", "A fruit"),
+            Vocabulary("Banana", "A fruit"),
+            Vocabulary("Cat", "An animal")
+        )
+
+        val columnNames = arrayOf("单词", "释义")
+        val rowData = vocabularyList.map { arrayOf(it.name, it.definition) }.toTypedArray()
+        val tableModel = DefaultTableModel(rowData, columnNames)
+
+        val table = JBTable(tableModel)
+
+
+        jbPanel.add(JBScrollPane(table))
     }
+
+    data class Vocabulary(
+        val name: String,
+        val definition: String
+    )
 
 }
